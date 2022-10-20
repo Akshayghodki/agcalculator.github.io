@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>Simple Interest Calculator</title>
+    <style>
+      body {background-color:black;
+	color:white;
+	font:arial;
+}
+
+h1 {color:grey;
+	font:verdana;
+	padding: 0px 10px;
+}
+
+.maindiv { background-color:white;
+	color:black;
+	width:400px;
+	padding:20px;
+	border-radius:25px;
+	margin:auto;
+	line-height:normal;
+}
+
+#mainform { margin:auto; 
+	line-height:30px;
+	display:table;
+}
+
+#mainform p { display: table-row; 
+}
+
+#mainform label { display:table-cell
+}
+
+.result { display:none;
+}
+
+footer {padding: 0px 10px;
+	padding-top:10px;
+}
+    </style>
+	</head>
+	<body>
+		<div class="maindiv">
+			<H1>Simple Interest Calculator</H1>
+			<form action="" id="mainform">
+				<p><label>Amount</label> <input type="number"  id="principal"></p> 
+				<p><label>Interest Rate</label> <input type="range"  id="rate" min="1" max="20" step="0.25" value="10.25" onchange="showRange();"> <span id="ratevalue">10.25%</span></p>
+				<p><label>No. of Years</label> <select name="years" id="years">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select> </p>
+				<p><button onclick="compute(); return false;">Compute Interest</button></p>
+			</form> 
+			<span id="result" class="result">
+				If you deposit <mark><label id="depositmessage"></label></mark><br/>
+				at an interest rate of <mark><label id="interestmessage"></label></mark>.<br/>
+				You wiill receive an amount of <mark><label id="amountmessage"></label></mark>,<br/>
+				in the year <mark><label id="yearmessage"></label></mark>
+			</span>
+			<footer>&#169;Everyone Can Get Rich<footer/>
+		</div>
+		<footer id="footer">
+			<div class="container">
+			  <div class="copyright">
+				&copy; Copyright <strong><span>iAkshay</span></strong>
+			  </div>
+			  <div class="credits">
+				<!-- All the links in the footer should remain intact. -->
+				<!-- You can delete the links only if you purchased the pro version. -->
+				<!-- Licensing information: https://bootstrapmade.com/license/ -->
+				<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+				Designed by <a href="https://akshayghodki520.wixsite.com/akshayghodki">Akshay❤️Ghodki</a>
+			  </div>
+			</div>
+		  </footer>
+    <script>
+      function showMessage() {
+	document.getElementById("result").style.display = "block";
+};
+
+function compute() {
+	var principal = document.getElementById("principal").value;
+	if(parseInt(principal) < 1) {
+		alert("Enter a positive number");
+		document.getElementById("principal").focus();
+		return;
+	}
+
+
+	var rate = document.getElementById("rate").value;
+	var years = document.getElementById("years").value;
+
+	var interest = principal * years * rate / 100;
+
+	var today = new Date();
+	var yearOfWithdrawal = parseInt(today.getFullYear())+parseInt(years);
+
+	document.getElementById("depositmessage").innerHTML = ""+principal;
+	document.getElementById("interestmessage").innerHTML = ""+rate;
+	document.getElementById("amountmessage").innerHTML = ""+interest;
+	document.getElementById("yearmessage").innerHTML = ""+yearOfWithdrawal;
+	showMessage();
+
+	return false;
+};
+
+function showRange() {
+	var rate = document.getElementById("rate").value;
+	document.getElementById("ratevalue").innerHTML = rate;
+}
+    </script>
+	</body>
+</html>
